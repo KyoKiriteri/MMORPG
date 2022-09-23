@@ -1,18 +1,24 @@
 using System.Collections;
+using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
-public class Quest : MonoBehaviour
+
+namespace mmorpg
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Quest : MonoBehaviour
     {
-        
-    }
+        // Start is called before the first frame update
+        void Start()
+        {
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
     }
 }
