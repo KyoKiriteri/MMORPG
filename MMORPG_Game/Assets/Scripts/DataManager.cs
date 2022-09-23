@@ -27,7 +27,7 @@ namespace mmorpg
             Quest quest = new Quest(player.QuestID, player.QuestName, 
                 player.QuestDesc, player.QuestReward, 
                 player.QuestEXP, player.QuestClear);
-            StartCoroutine(Quest.SaveQuestDataToDatabase(uri, outputArea));
+            StartCoroutine(quest.SaveQuestDataToDatabase(uri, outputArea));
         }
     }
 }
