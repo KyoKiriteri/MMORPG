@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-
 namespace mmorpg
 {
     [System.Serializable]
@@ -58,27 +57,31 @@ namespace mmorpg
             }
         }
 
-        public IEnumerator SaveQuestDataToDatabase(string uri, TMP_InputField outputArea)
+        public IEnumerator SaveQuestDataToDatabase(string uri, Quest quest, TMP_InputField outputArea)
         {
-            string questID = $"\"questID\":{this.questID},";
-            string questName = $"\"questName\":{this.questName},";
-            string questDesc = $"\"questDesc\":{this.questDesc},";
-            string questReward = $"\"questReward\":{this.questReward},";
-            string questEXP = $"\"questEXP\":{this.questEXP},";
-            string questClear = $"\"questClear\":{this.questClear},";
+            //string questID = $"\"questID\":{this.questID},";
+            //string questName = $"\"questName\":{this.questName},";
+            //string questDesc = $"\"questDesc\":{this.questDesc},";
+            //string questReward = $"\"questReward\":{this.questReward},";
+            //string questEXP = $"\"questEXP\":{this.questEXP},";
+            //string questClear = $"\"questClear\":{this.questClear}";
 
-            string questData = "{" + questID + questName +
-                questDesc + questReward +
-                questEXP + questClear + "}";
+            //string bodyData = "{" + questID + questName +
+            //    questDesc + questReward +
+            //    questEXP + questClear + "}";
 
-            using (UnityWebRequest request = UnityWebRequest.Put(uri, questData))
+            string bodyData = JsonUtility.ToJson(quest);
+
+            Debug.Log(bodyData);
+
+            using (UnityWebRequest request = UnityWebRequest.Put(uri, bodyData))
             {
                 request.SetRequestHeader("Content-Type", "application/json");
                 yield return request.SendWebRequest();
 
                 if (request.error != null)
                 {
-                    outputArea.text = $"Connecion error: {request.error}";
+                    outputArea.text = $"Connection error: {request.error}";
                 }
                 else
                 {
@@ -87,3 +90,4 @@ namespace mmorpg
             }
         }
     }
+}

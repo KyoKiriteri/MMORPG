@@ -12,6 +12,7 @@ namespace mmorpg
 
         public Player player;
 
+
         public void GetData()
         {
             outputArea.text = null;
@@ -23,11 +24,12 @@ namespace mmorpg
         public void PutData()
         {
             outputArea.text = "Loading...";
-            string uri = "https://localhost:7214/mmorpg/1";
+            string uri = "https://localhost:7214/mmorpg/{id}?QuestID=1";
+
             Quest quest = new Quest(player.QuestID, player.QuestName, 
                 player.QuestDesc, player.QuestReward, 
                 player.QuestEXP, player.QuestClear);
-            StartCoroutine(quest.SaveQuestDataToDatabase(uri, outputArea));
+            StartCoroutine(quest.SaveQuestDataToDatabase(uri, quest, outputArea));
         }
     }
 }
